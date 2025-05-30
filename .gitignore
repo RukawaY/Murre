@@ -1,0 +1,5 @@
+./chechpoint/
+./__pycache__/
+./sfm_depth/__pycache__/
+./murre/__pycache__/
+./murre/util/__pycache__/

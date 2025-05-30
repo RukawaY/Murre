@@ -237,7 +237,7 @@ if "__main__" == __name__:
         variant = None
 
     pipe: MurrePipeline = MurrePipeline.from_pretrained(
-        checkpoint_path, variant=variant, torch_dtype=dtype
+        checkpoint_path, variant=variant, torch_dtype=dtype, use_safetensors=False
     )
 
     try:
