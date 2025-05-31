@@ -134,7 +134,14 @@ if __name__ == '__main__':
     msk_keep = (~msk).copy()
     msk_keep[msk] = visible_num <= check_threshold
 
-    m = trimesh.Trimesh(vertices=vertices_no_check, faces=np.asarray(mesh_no_check.triangles), process=False)
+    vertex_colors_o3d = None
+    if mesh_no_check.has_vertex_colors():
+        vertex_colors_o3d = (np.asarray(mesh_no_check.vertex_colors) * 255).astype(np.uint8)
+
+    m = trimesh.Trimesh(vertices=vertices_no_check,
+                        faces=np.asarray(mesh_no_check.triangles),
+                        vertex_colors=vertex_colors_o3d,
+                        process=False)
     msk_keep_face = msk_keep[np.asarray(mesh_no_check.triangles)].all(-1)
     m.update_vertices(msk_keep)
     m.update_faces(msk_keep_face)       
